@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Dashboard MOOV Adventures</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            opacity: 0.9;
+        }
+
+        .container {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+        }
+
+        .sidebar {
+            width: 280px;
+            background: #2d3748;
+            color: white;
+            padding: 2rem 0;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .sidebar h3 {
+            padding: 0 1.5rem;
+            margin-bottom: 1rem;
+            color: #a0aec0;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .sidebar nav a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: #e2e8f0;
+            text-decoration: none;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+        }
+
+        .sidebar nav a:hover {
+            background: #4a5568;
+            border-left-color: #667eea;
+        }
+
+        .sidebar nav a.active {
+            background: #4a5568;
+            border-left-color: #667eea;
+            color: white;
+        }
+
+        .sidebar nav .sub-item {
+            padding-left: 2.5rem;
+            font-size: 0.9rem;
+        }
+
+        .content {
+            flex: 1;
+            padding: 3rem;
+            overflow-y: auto;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+            scroll-margin-top: 2rem;
+        }
+
+        .section h2 {
+            color: #667eea;
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .section h3 {
+            color: #4a5568;
+            font-size: 1.35rem;
+            margin: 2rem 0 1rem;
+        }
+
+        .section h4 {
+            color: #718096;
+            font-size: 1.1rem;
+            margin: 1.5rem 0 0.75rem;
+        }
+
+        .step {
+            background: #f7fafc;
+            border-left: 4px solid #667eea;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .step strong {
+            color: #667eea;
+        }
+
+        .note {
+            background: #fff5f5;
+            border-left: 4px solid #fc8181;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .note::before {
+            content: "⚠️ ";
+            font-weight: bold;
+        }
+
+        ul, ol {
+            margin-left: 2rem;
+            margin-top: 0.5rem;
+        }
+
+        li {
+            margin: 0.5rem 0;
+        }
+
+        .image-placeholder {
+            background: #edf2f7;
+            border: 2px dashed #cbd5e0;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            color: #718096;
+            margin: 1.5rem 0;
+        }
+
+        code {
+            background: #edf2f7;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin: 0.25rem 0.5rem 0.25rem 0;
+        }
+
+        .status-cancelado { background: #fed7d7; color: #c53030; }
+        .status-confirmado { background: #c6f6d5; color: #2f855a; }
+        .status-pendiente { background: #feebc8; color: #c05621; }
+        .status-rechazado { background: #feb2b2; color: #9b2c2c; }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                position: relative;
+                height: auto;
+            }
+
+            .content {
+                padding: 1.5rem;
+            }
+        }
+
+        .icon-list {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+
+        .icon-item {
+            flex: 1;
+            min-width: 200px;
+            background: #f7fafc;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .icon-item strong {
+            color: #667eea;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📚 Manual Dashboard MOOV Adventures</h1>
+        <p>Guía completa de uso del sistema</p>
+    </div>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>Contenido</h3>
+            <nav>
+                <a href="#crear-contrato" class="active">Crear Contrato</a>
+                <a href="#seleccionar-cliente" class="sub-item">1. Seleccionar Cliente</a>
+                <a href="#detalles-contrato" class="sub-item">2. Detalles del Contrato</a>
+                <a href="#agregar-servicios" class="sub-item">3. Agregar Servicios</a>
+                <a href="#finalizar" class="sub-item">4. Finalizar</a>
+                <a href="#editar-reservas">Editar Reservas</a>
+                <a href="#seleccionar-reserva" class="sub-item">Seleccionar Reserva</a>
+                <a href="#editar-vehiculos" class="sub-item">Editar Vehículos</a>
+                <a href="#detalle-pago" class="sub-item">Detalle de Pago</a>
+                <a href="#anexo">Anexo</a>
+                <a href="#estados-reserva" class="sub-item">Estados de Reserva</a>
+            </nav>
+        </aside>
+
+        <main class="content">
+            <section id="crear-contrato" class="section">
+                <h2>Crear Contrato</h2>
+                
+                <h3 id="seleccionar-cliente">1. Seleccionar Cliente</h3>
+                
+                <h4>Opción 1: Cliente existente</h4>
+                <div class="step">
+                    <strong>Paso 1:</strong> Buscar por email o nombre el cliente y seleccionarlo.
+                </div>
+                <div class="step">
+                    <strong>Paso 2:</strong> Clic en botón "Continuar"
+                </div>
+                <div class="image-placeholder">🖼️ Captura: Búsqueda de cliente existente</div>
+
+                <h4>Opción 2: Nuevo cliente</h4>
+                <div class="step">
+                    <strong>Paso 1:</strong> Desactivar el switch para indicar que es un nuevo cliente.
+                </div>
+                <div class="step">
+                    <strong>Paso 2:</strong> Clic en "Crear Nuevo Cliente"
+                </div>
+                <div class="step">
+                    <strong>Paso 3:</strong> Completar los campos del formulario. El campo Instagram es opcional.
+                </div>
+                <div class="step">
+                    <strong>Paso 4:</strong> Clic en "Crear Cliente". El cliente quedará seleccionado automáticamente.
+                </div>
+                <div class="image-placeholder">🖼️ Captura: Formulario de nuevo cliente</div>
+            </section>
+
+            <section id="detalles-contrato" class="section">
+                <h2>2. Detalles del Contrato</h2>
+                <p>Completar los campos requeridos del formulario.</p>
+                <div class="image-placeholder">🖼️ Captura: Formulario de detalles del contrato</div>
+            </section>
+
+            <section id="agregar-servicios" class="section">
+                <h2>3. Agregar Servicios al Carrito</h2>
+                <p>Seleccionar de la lista desplegable el servicio que se desea agregar.</p>
+                
+                <h3>Opción 1: Vehículos</h3>
+                <ol>
+                    <li>Completar fecha y hora de recogida y devolución</li>
+                    <li>Elegir el vehículo del desplegable</li>
+                    <li>Cargar la cantidad de pasajeros (máximo permitido por el vehículo)</li>
+                    <li>El monto total se calcula automáticamente pero puede modificarse</li>
+                </ol>
+
+                <h4>Configuración de Delivery</h4>
+                <div class="step">
+                    <strong>Paso 5:</strong> Activar el switch si requiere delivery
+                </div>
+                <div class="step">
+                    <strong>Paso 6:</strong> Clic en "Seleccionar Ubicación"
+                </div>
+                <div class="step">
+                    <strong>Paso 7:</strong> Seleccionar si requiere entrega y devolución, solo entrega o solo devolución. Luego clic en "Siguiente"
+                </div>
+                <div class="step">
+                    <strong>Paso 8:</strong> Colocar la ubicación o buscarla en el mapa, clic en siguiente para ver el resumen y "Confirmar Delivery"
+                </div>
+                <div class="note">
+                    Con el delivery cargado, puede editar el monto a cobrar según lo deseado.
+                </div>
+                <div class="step">
+                    <strong>Paso 9:</strong> Finalmente clic en "Agregar al Carrito"
+                </div>
+
+                <h3>Opción 2: Tours</h3>
+                <ol>
+                    <li>Seleccionar la fecha del servicio</li>
+                    <li>Elegir del listado de "Servicio Específico" el tour deseado</li>
+                    <li>Seleccionar la hora deseada en el campo "Horario del Tour" (aparece después de seleccionar el tour)</li>
+                    <li>Elegir la cantidad de pasajeros</li>
+                    <li>Configurar el monto deseado si el calculado automáticamente no corresponde</li>
+                    <li>Clic en "Agregar al Carrito"</li>
+                </ol>
+
+                <h3>Opción 3: Tickets</h3>
+                <ol>
+                    <li>Seleccionar la fecha del servicio</li>
+                    <li>Seleccionar del desplegable el ticket deseado</li>
+                    <li>Configurar la cantidad de pasajeros</li>
+                    <li>Configurar el monto deseado si el calculado automáticamente no corresponde</li>
+                    <li>Clic en "Agregar al Carrito"</li>
+                </ol>
+
+                <h3>Opción 4: Transfer</h3>
+                <ol>
+                    <li>Seleccionar la fecha y hora del Transfer</li>
+                    <li>Elegir del desplegable el Transfer deseado</li>
+                    <li>Configurar la cantidad de pasajeros</li>
+                    <li>Completar los campos "Aerolínea" y "Número de Vuelo"</li>
+                    <li>Clic en "Agregar al Carrito"</li>
+                </ol>
+
+                <h3>Resumen de servicios agregados</h3>
+                <p>A medida que se agregan servicios al carrito, pueden visualizarse en el botón violeta "Ver Carrito".</p>
+                <p>Desde el carrito es posible:</p>
+                <ul>
+                    <li>Visualizar todos los items cargados</li>
+                    <li>Eliminar items individuales con el botón rojo del tachito</li>
+                    <li>Vaciar completamente el carrito con el botón "Vaciar"</li>
+                </ul>
+            </section>
+
+            <section id="finalizar" class="section">
+                <h2>4. Finalizar</h2>
+                <ol>
+                    <li>Seleccionar el método de pago del desplegable</li>
+                    <li>Seleccionar "Medio de pago" del desplegable si no corresponde con el autoseleccionado</li>
+                    <li>Cargar el depósito en caso de que corresponda por la renta</li>
+                </ol>
+
+                <div class="note">
+                    <strong>Switch "Enviar correo al cliente":</strong> Por defecto activo. Si se desactiva, no enviará el email al cliente con el detalle de la reserva. Útil cuando se está generando nuevamente una reserva antigua.
+                </div>
+
+                <div class="step">
+                    <strong>Paso 4:</strong> Finalmente clic en "Crear contrato"
+                </div>
+            </section>
+
+            <section id="editar-reservas" class="section">
+                <h2>Editar Reservas</h2>
+                
+                <h3 id="seleccionar-reserva">Seleccionar la reserva a editar</h3>
+                <p>Se puede buscar por número de reserva, email o nombre del cliente.</p>
+
+                <h3>Datos del cliente y Reserva</h3>
+                <p>En esta sección se puede modificar cualquier campo en caso de error en la carga o si es necesario realizar cambios.</p>
+
+                <h3 id="editar-vehiculos">Editar Vehículos del Contrato</h3>
+                <p>Cada vehículo posee 4 iconos con diferentes funcionalidades:</p>
+
+                <div class="icon-list">
+                    <div class="icon-item">
+                        <strong>🖊️ Editar Reserva</strong>
+                        <p>Permite editar la reserva completa del vehículo: fechas, vehículos y cantidad de personas. No requiere cargo económico. Se usa para corregir errores en la carga inicial.</p>
+                        <p><em>Acción: Modificar y clic en "Guardar Inmediato"</em></p>
+                    </div>
+
+                    <div class="icon-item">
+                        <strong>📅 Extensión de Renta</strong>
+                        <p>Se utiliza para extender el período de renta. Configurar nueva fecha de finalización y cantidad de personas.</p>
+                        <p><em>Acción: Clic en "Preparar Extensión"</em></p>
+                        <div class="note">Requiere completar el paso 4 (Pago)</div>
+                    </div>
+
+                    <div class="icon-item">
+                        <strong>🔄 Cambio de Vehículo</strong>
+                        <p>Permite cambiar el vehículo asignado. Colocar la fecha de inicio del nuevo vehículo y seleccionar el vehículo a entregar.</p>
+                        <p><em>Acción: Clic en "Preparar Cambio"</em></p>
+                        <div class="note">Requiere completar el paso 4 (Pago)</div>
+                    </div>
+
+                    <div class="icon-item">
+                        <strong>🚚 Agregar Delivery</strong>
+                        <p>Se usa para cargar delivery a una renta ya cargada. Seguir el proceso descrito en la sección "Crear contrato".</p>
+                        <div class="note">Requiere completar el paso 4 (Pago)</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="detalle-pago" class="section">
+                <h2>Detalle del pago y Movimientos</h2>
+                
+                <h3>Caso 1: Movimientos del sistema</h3>
+                <p>Esta sección se utiliza para cargar el pago de los movimientos de extensión, cambio de vehículo y delivery.</p>
+                <ul>
+                    <li>El campo "Movimiento referido" se completa automáticamente</li>
+                    <li>Para extensión y delivery el monto pagado es automático, pero puede editarse si no corresponde</li>
+                    <li>En la parte final se puede observar el cambio que está a punto de guardarse</li>
+                </ul>
+                <div class="step">
+                    <strong>Finalizar:</strong> Clic en "Guardar Cambios"
+                </div>
+
+                <h3>Caso 2: Otros movimientos</h3>
+                <p>Esta sección también se utiliza para cargar cualquier tipo de movimiento que implique un ingreso de dinero a la tienda:</p>
+                <ul>
+                    <li>ROBO</li>
+                    <li>COMBUSTIBLE</li>
+                    <li>Entre otros</li>
+                </ul>
+                <p>Estos movimientos se seleccionan del desplegable "Movimiento referido", se cargan los campos restantes y se guardan haciendo clic en "Guardar Cambios".</p>
+            </section>
+
+            <section id="anexo" class="section">
+                <h2>Anexo</h2>
+                
+                <h3 id="estados-reserva">Estados de Reserva</h3>
+                
+                <div class="step">
+                    <span class="status-badge status-cancelado">CANCELADO</span>
+                    <ul>
+                        <li>Reservas canceladas no suman para reportes</li>
+                        <li>No ocupan las fechas de los vehículos</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <span class="status-badge status-confirmado">CONFIRMADO</span>
+                    <ul>
+                        <li>Desde la web pagada completamente (crédito/débito)</li>
+                        <li>Desde la web pago en efectivo. Al costado del estado aparece cartel "PAGO PENDIENTE". Pago 20% crédito/débito</li>
+                        <li>Cualquier medio de pago utilizado desde el dashboard, que no esté activo el switch de "Reserva"</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <span class="status-badge status-pendiente">PENDIENTE</span>
+                    <ul>
+                        <li>Desde la web pago en transferencia. Aparece cartel "PAGO PENDIENTE"</li>
+                        <li>Desde el dashboard cuando se activa el switch "Reserva". Aparece cartel "PAGO PENDIENTE"</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <span class="status-badge status-rechazado">RECHAZADO</span>
+                    <ul>
+                        <li>Reservas que falló el pago del crédito/débito (tanto la reserva del 20% como el pago completo)</li>
+                        <li>Aparece cartel "PAGO ERRONEO"</li>
+                    </ul>
+                </div>
+            </section>
+
+            <div style="margin-top: 4rem; padding: 2rem; background: #f7fafc; border-radius: 8px; text-align: center;">
+                <p style="color: #718096;">
+                    📝 Manual en desarrollo • Última actualización: Noviembre 2024
+                </p>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Smooth scrolling para los links del sidebar
+        document.querySelectorAll('.sidebar a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Actualizar clase active
+                    document.querySelectorAll('.sidebar a').forEach(a => a.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // Highlight automático del menú al hacer scroll
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('.section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.sidebar a').forEach(a => {
+                a.classList.remove('active');
+                if (a.getAttribute('href').substring(1) === current) {
+                    a.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
