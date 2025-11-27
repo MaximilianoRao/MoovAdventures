@@ -97,10 +97,19 @@
             margin-bottom: 3rem;
             scroll-margin-top: 2rem;
         }
+        .section h1 {
+            font-size: 1.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #6c757d;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
 
         .section h2 {
             color: #1a9b94;
             font-size: 1.75rem;
+            margin-top: 0;
             margin-bottom: 1.5rem;
             padding-bottom: 0.5rem;
             border-bottom: 2px solid #e2e8f0;
@@ -128,6 +137,14 @@
 
         .step strong {
             color: #1a9b94;
+        }
+
+        .note2 {
+            background: #fff5f5;
+            border-left: 4px solid #b8956a;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
         }
 
         .note {
@@ -180,10 +197,12 @@
             margin: 0.25rem 0.5rem 0.25rem 0;
         }
 
-        .status-cancelado { background: #fed7d7; color: #c53030; }
+        .status-cancelado { background: #ada0bb; color: #6020A0; }
         .status-confirmado { background: #c6f6d5; color: #2f855a; }
         .status-pendiente { background: #feebc8; color: #c05621; }
         .status-rechazado { background: #feb2b2; color: #9b2c2c; }
+        .status-pagopendiente { background: #fffbeb; color: #c05621; }
+        .status-pagorechazado { background: #fef2f2; color: #9b2c2c; }
 
         @media (max-width: 768px) {
             .container {
@@ -226,9 +245,13 @@
 </head>
 <body>
     <div class="header">
-        <h1>📚 Manual Dashboard MOOV Adventures</h1>
-        <p>Guía completa de uso del sistema</p>
+    <img src="images/logo-circle.png" alt="MOOV Adventures" style="width: 100px; height: 100px; display: block; margin: 0 auto 1rem auto; background: transparent;">
+        <div>
+            <h1>📚 Manual Dashboard MOOV Adventures</h1>
+            <p>Guía completa de uso del sistema</p>
+        </div>
     </div>
+
 
     <div class="container">
         <aside class="sidebar">
@@ -240,207 +263,385 @@
                 <a href="#agregar-servicios" class="sub-item">3. Agregar Servicios</a>
                 <a href="#finalizar" class="sub-item">4. Finalizar</a>
                 <a href="#editar-reservas">Editar Reservas</a>
-                <a href="#seleccionar-reserva" class="sub-item">Seleccionar Reserva</a>
-                <a href="#editar-vehiculos" class="sub-item">Editar Vehículos</a>
-                <a href="#detalle-pago" class="sub-item">Detalle de Pago</a>
+                <a href="#seleccionar-reserva" class="sub-item">1. Seleccionar Reserva</a>
+                <a href="#datos_cliente" class="sub-item">2. Datos del cliente</a>
+                <a href="#editar-vehiculos" class="sub-item">3. Editar Vehículos</a>
+                <a href="#detalle-pago" class="sub-item">4. Detalle de Pago</a>
                 <a href="#anexo">Anexo</a>
                 <a href="#estados-reserva" class="sub-item">Estados de Reserva</a>
             </nav>
+            <div style="padding: 2rem 1.5rem; margin-top: 3rem; border-top: 1px solid rgba(255,255,255,0.1);">
+                <img src="images/eslogan.png" alt="MOOV Adventures" style="width: 100%; max-width: 220px; display: block; margin: 0 auto;">
+            </div>
         </aside>
 
         <main class="content">
+            <div style="background: linear-gradient(135deg, #fff3cd 0%, #fff8e1 100%); border-left: 5px solid #b8956a; padding: 1.5rem; margin-bottom: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        <div style="display: flex; align-items: start; gap: 1rem;">
+            <div style="font-size: 2rem; line-height: 1;">⚠️</div>
+            <div>
+                <h3 style="margin: 0 0 0.5rem 0; color: #b8956a; font-size: 1.1rem;">Importante</h3>
+                <p style="margin: 0; color: #856404; line-height: 1.6;">
+                    Este instructivo muestra <strong>TODAS las opciones de la WEB</strong>, algunas pueden no estar disponibles para todos los <strong>PERFILES DE USUARIO</strong>. Ejemplo: ediciones de precios y secciones determinadas.
+                </p>
+            </div>
+        </div>
+    </div>
             <section id="crear-contrato" class="section">
-                <h2>Crear Contrato</h2>
+                <h1>Crear Contrato</h1>
                 
-                <h3 id="seleccionar-cliente">1. Seleccionar Cliente</h3>
+                <h2 id="seleccionar-cliente">1. Seleccionar Cliente</h2>
                 
-                <h4>Opción 1: Cliente existente</h4>
+                <h3>Opción 1: Cliente existente</h3>
                 <div class="step">
                     <strong>Paso 1:</strong> Buscar por email o nombre el cliente y seleccionarlo.
                 </div>
                 <div class="step">
                     <strong>Paso 2:</strong> Clic en botón "Continuar"
                 </div>
-                <div class="image-placeholder">🖼️ Captura: Búsqueda de cliente existente</div>
+                <img src="images/cliente_existente.png" alt="No imagen" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: block; margin: 1rem auto;">
 
-                <h4>Opción 2: Nuevo cliente</h4>
+                <h3>Opción 2: Nuevo cliente</h3>
+                <img src="images/cliente_inexistente.png" alt="No imagen" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: block; margin: 1rem auto;">
                 <div class="step">
                     <strong>Paso 1:</strong> Desactivar el switch para indicar que es un nuevo cliente.
                 </div>
                 <div class="step">
                     <strong>Paso 2:</strong> Clic en "Crear Nuevo Cliente"
                 </div>
+                <img src="images/nuevo_cliente.png" alt="No imagen" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: block; margin: 1rem auto;">
                 <div class="step">
                     <strong>Paso 3:</strong> Completar los campos del formulario. El campo Instagram es opcional.
                 </div>
                 <div class="step">
                     <strong>Paso 4:</strong> Clic en "Crear Cliente". El cliente quedará seleccionado automáticamente.
                 </div>
-                <div class="image-placeholder">🖼️ Captura: Formulario de nuevo cliente</div>
+                <div class="note">
+                    Le llegará un mail al correo del usuario con una contraseña para que pueda ingresar a su cuenta desde la página web.
+                    <strong>IMPORTANTE colocar el correo correctamente.</strong> 
+                </div>
+                <img src="images/seleccion.png" alt="No imagen" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: block; margin: 1rem auto;">
             </section>
 
             <section id="detalles-contrato" class="section">
                 <h2>2. Detalles del Contrato</h2>
-                <p>Completar los campos requeridos del formulario.</p>
-                <div class="image-placeholder">🖼️ Captura: Formulario de detalles del contrato</div>
+                <div class="step">
+                    Completar los campos requeridos del formulario.
+                </div>
+                <div style="background: linear-gradient(135deg, #fff3cd 0%, #fff8e1 100%); border-left: 5px solid #b8956a; padding: 1.5rem; margin: 1.5rem 0; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <div style="text-align: center; font-size: 2rem; margin-bottom: 1rem;">⚠️</div>
+                <ul style="margin: 0; padding-left: 1.5rem; color: #856404; line-height: 1.8;">
+                <li style="margin-bottom: 0.75rem;">
+                    Automáticamente se completará <strong>TIENDA</strong> como vendedor, pero en caso que sea necesario puede seleccionar <strong>OTRO DEL LISTADO</strong>.
+                </li>
+                <li>
+                    La comisión se coloca automáticamente en <strong>15%</strong> cuando se selecciona un vendedor distinto de WEB/TIENDA. <strong>Pero este porcentaje puede ser editable según corresponda.</strong>
+                </li>
+                </ul>
+                </div>
+                <img src="images/detalle.png" alt="No imagen" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: block; margin: 1rem auto;">
             </section>
 
             <section id="agregar-servicios" class="section">
                 <h2>3. Agregar Servicios al Carrito</h2>
-                <p>Seleccionar de la lista desplegable el servicio que se desea agregar.</p>
-                
+                <div class="step">
+                    Seleccionar de la lista desplegable el servicio que se desea agregar.
+                </div>
+                <img src="images/tipo_servicio.png" alt="No imagen" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: block; margin: 1rem auto;">
                 <h3>Opción 1: Vehículos</h3>
-                <ol>
-                    <li>Completar fecha y hora de recogida y devolución</li>
-                    <li>Elegir el vehículo del desplegable</li>
-                    <li>Cargar la cantidad de pasajeros (máximo permitido por el vehículo)</li>
-                    <li>El monto total se calcula automáticamente pero puede modificarse</li>
-                </ol>
-
-                <h4>Configuración de Delivery</h4>
+                <div class="step">
+                    <strong>Paso 1:</strong> Completar fecha y hora de recogida y devolución
+                </div>
+                <div class="step">
+                    <strong>Paso 2:</strong> Elegir el vehículo del desplegable
+                </div>
+                <div class="step">
+                    <strong>Paso 3:</strong> Cargar la cantidad de pasajeros (máximo permitido por el vehículo)
+                </div>
+                <div class="step">
+                    <strong>Paso 4:</strong> El monto total se calcula automáticamente pero puede modificarse
+                </div>
+                <img src="images/vehiculo.png" alt="No imagen" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: block; margin: 1rem auto;">
+                <h4 id="configurar_delivery">Configuración de Delivery</h4>
                 <div class="step">
                     <strong>Paso 5:</strong> Activar el switch si requiere delivery
+                </div>
+                <div style="background: linear-gradient(135deg, #fff3cd 0%, #fff8e1 100%); border-left: 5px solid #b8956a; padding: 1.5rem; margin: 1.5rem 0; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <div style="text-align: center; font-size: 2rem; margin-bottom: 1rem;">⚠️</div>
+                <div style="margin: 0; padding-left: 1.5rem; color: #856404; line-height: 1.8;">
+                Tener en cuenta de que si va a ser más de un vehículo, se <strong>RECOMIENDA</strong> cargar el delivery en el ultimo a cargar, para no tener que cargarlo por vehículo.
+                </div>
                 </div>
                 <div class="step">
                     <strong>Paso 6:</strong> Clic en "Seleccionar Ubicación"
                 </div>
+                <img src="images/ubicacion.png" alt="No imagen" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: block; margin: 1rem auto;">
                 <div class="step">
                     <strong>Paso 7:</strong> Seleccionar si requiere entrega y devolución, solo entrega o solo devolución. Luego clic en "Siguiente"
                 </div>
-                <div class="step">
-                    <strong>Paso 8:</strong> Colocar la ubicación o buscarla en el mapa, clic en siguiente para ver el resumen y "Confirmar Delivery"
+                <img src="images/delivery.png" alt="No imagen" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: block; margin: 1rem auto;">
+                <div class="note">
+                    En caso de seleccionar “Solo ida” se debe especificar si es entrega o devolución.
                 </div>
+                <img src="images/soloida.png" alt="No imagen" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: block; margin: 1rem auto;">
+                <div class="step">
+                    <strong>Paso 8:</strong> Colocar la ubicación o buscarla en el mapa, clic en siguiente para ver el resumen y "Confirmar Delivery" para cargar.
+                </div>
+                <img src="images/resumendelivery.png" alt="No imagen" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: block; margin: 1rem auto;">
                 <div class="note">
                     Con el delivery cargado, puede editar el monto a cobrar según lo deseado.
                 </div>
+                <div style="background: linear-gradient(135deg, #fff3cd 0%, #fff8e1 100%); border-left: 5px solid #b8956a; padding: 1.5rem; margin: 1.5rem 0; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <div style="text-align: center; font-size: 2rem; margin-bottom: 1rem;">⚠️</div>
+                <div style="margin: 0; padding-left: 1.5rem; color: #856404; line-height: 1.8;">
+                Tener en cuenta de que si es más de un vehículo el monto que aparece en este punto es <strong>POR vehículo</strong>
+                </div>
+                </div>
+                <img src="images/totaldelivery.png" alt="No imagen" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: block; margin: 1rem auto;">
                 <div class="step">
                     <strong>Paso 9:</strong> Finalmente clic en "Agregar al Carrito"
                 </div>
 
                 <h3>Opción 2: Tours</h3>
-                <ol>
-                    <li>Seleccionar la fecha del servicio</li>
-                    <li>Elegir del listado de "Servicio Específico" el tour deseado</li>
-                    <li>Seleccionar la hora deseada en el campo "Horario del Tour" (aparece después de seleccionar el tour)</li>
-                    <li>Elegir la cantidad de pasajeros</li>
-                    <li>Configurar el monto deseado si el calculado automáticamente no corresponde</li>
-                    <li>Clic en "Agregar al Carrito"</li>
-                </ol>
-
+                <div class="step">
+                    <strong>Paso 1:</strong> Seleccionar la fecha del servicio
+                </div>
+                <div class="step">
+                    <strong>Paso 2:</strong> Elegir del listado de "Servicio Específico" el tour deseado
+                </div>
+                <div class="step">
+                    <strong>Paso 3:</strong> Seleccionar la hora deseada en el campo "Horario del Tour" (aparece después de seleccionar el tour)
+                </div>
+                <div class="step">
+                    <strong>Paso 4:</strong> Elegir la cantidad de pasajeros
+                </div>
+                <div class="step">
+                    <strong>Paso 5:</strong> Configurar el monto deseado si el calculado automáticamente no corresponde
+                </div>
+                <div class="step">
+                    <strong>Paso 6:</strong> Clic en "Agregar al Carrito"
+                </div>
+                <img src="images/tour.png" alt="No imagen" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: block; margin: 1rem auto;">
                 <h3>Opción 3: Tickets</h3>
-                <ol>
-                    <li>Seleccionar la fecha del servicio</li>
-                    <li>Seleccionar del desplegable el ticket deseado</li>
-                    <li>Configurar la cantidad de pasajeros</li>
-                    <li>Configurar el monto deseado si el calculado automáticamente no corresponde</li>
-                    <li>Clic en "Agregar al Carrito"</li>
-                </ol>
-
+                <div class="step">
+                    <strong>Paso 1:</strong> Seleccionar la fecha del servicio
+                </div>
+                <div class="step">
+                    <strong>Paso 2:</strong> Seleccionar del desplegable el ticket deseado
+                </div>
+                <div class="step">
+                    <strong>Paso 3:</strong> Elegir la cantidad de pasajeros
+                </div>
+                <div class="step">
+                    <strong>Paso 4:</strong> Configurar el monto deseado si el calculado automáticamente no corresponde
+                </div>
+                <div class="step">
+                    <strong>Paso 5:</strong> Clic en "Agregar al Carrito"
+                </div>
+                <img src="images/ticket.png" alt="No imagen" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: block; margin: 1rem auto;">
                 <h3>Opción 4: Transfer</h3>
-                <ol>
-                    <li>Seleccionar la fecha y hora del Transfer</li>
-                    <li>Elegir del desplegable el Transfer deseado</li>
-                    <li>Configurar la cantidad de pasajeros</li>
-                    <li>Completar los campos "Aerolínea" y "Número de Vuelo"</li>
-                    <li>Clic en "Agregar al Carrito"</li>
-                </ol>
-
+                <div class="step">
+                    <strong>Paso 1:</strong> Seleccionar la fecha y hora del Transfer
+                </div>
+                <div class="step">
+                    <strong>Paso 2:</strong> Elegir del desplegable el Transfer deseado
+                </div>
+                <div class="step">
+                    <strong>Paso 3:</strong> Elegir la cantidad de pasajeros
+                </div>
+                <div style="background: linear-gradient(135deg, #fff3cd 0%, #fff8e1 100%); border-left: 5px solid #b8956a; padding: 1.5rem; margin: 1.5rem 0; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <div style="text-align: center; font-size: 2rem; margin-bottom: 1rem;">⚠️</div>
+                <div style="margin: 0; padding-left: 1.5rem; color: #856404; line-height: 1.8;">
+                Según la cantidad de pasajeros y el Transfer escogido es la cantidad de servicios y el monto que se calculará automáticamente. En el caso de la imagen si coloco más de 3 pasajeros, la cantidad de servicios aumentará automáticamente a 2 y el monto a cobrar se duplicará.
+                </div>
+                </div>
+                <img src="images/tours.png" alt="No imagen" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: block; margin: 1rem auto;">
+                <div class="step">
+                    <strong>Paso 4:</strong> Completar los campos "Aerolínea" y "Número de Vuelo"
+                </div>
+                <div class="step">
+                    <strong>Paso 5:</strong> Clic en "Agregar al Carrito"
+                </div>
                 <h3>Resumen de servicios agregados</h3>
-                <p>A medida que se agregan servicios al carrito, pueden visualizarse en el botón violeta "Ver Carrito".</p>
-                <p>Desde el carrito es posible:</p>
+                <div class="step">
+                    A medida que se agregan servicios al carrito, pueden visualizarse en el botón violeta "Ver Carrito".
+                </div>
+                <img src="images/resumen.png" alt="No imagen" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: block; margin: 1rem auto;">
+                <div class="step">
+                    <p>Desde el carrito es posible:</p>
                 <ul>
-                    <li>Visualizar todos los items cargados</li>
+                    <li>Visualizar todos los items cargados y el total</li>
                     <li>Eliminar items individuales con el botón rojo del tachito</li>
                     <li>Vaciar completamente el carrito con el botón "Vaciar"</li>
                 </ul>
+                </div>
+                <img src="images/carrito.png" alt="No imagen" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: block; margin: 1rem auto;">
+                <div style="background: linear-gradient(135deg, #fff3cd 0%, #fff8e1 100%); border-left: 5px solid #b8956a; padding: 1.5rem; margin: 1.5rem 0; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <div style="text-align: center; font-size: 2rem; margin-bottom: 1rem;">⚠️</div>
+                <div style="margin: 0; padding-left: 1.5rem; color: #856404; line-height: 1.8;">
+                Acá no podemos visualizar el delivery cargado pero el mismo lo podemos ver en la parte final de la pantalla, un total de los servicios cargados, y el delivery por vehículo.
+                </div>
+                </div>
+                <img src="images/resumen2.png" alt="No imagen" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: block; margin: 1rem auto;">
+                <div style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-left: 5px solid #42a5f5; padding: 1.5rem; margin: 1.5rem 0; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <div style="text-align: center; font-size: 2rem; margin-bottom: 1rem;">ℹ️</div>
+                <div style="margin: 0; padding-left: 1.5rem; color: #0d47a1; line-height: 1.8;">
+                En este punto podemos indicarle al cliente que ingrese a la web con su usuario(mail) y contraseña (si es un usuario nuevo, que se fije en la contraseña que le llego al correo) y en su carrito va a tener todo lo cargado hasta el momento y podrá proceder con el pago desde el sitio. O continuar con el instructivo.
+                </div>
+                </div>
             </section>
 
             <section id="finalizar" class="section">
                 <h2>4. Finalizar</h2>
-                <ol>
-                    <li>Seleccionar el método de pago del desplegable</li>
-                    <li>Seleccionar "Medio de pago" del desplegable si no corresponde con el autoseleccionado</li>
-                    <li>Cargar el depósito en caso de que corresponda por la renta</li>
-                </ol>
-
+                <div class="step">
+                    <strong>Paso 1:</strong> Seleccionar el método de pago del desplegable
+                </div>
+                <div class="step">
+                    <strong>Paso 2:</strong> Seleccionar "Medio de pago" del desplegable si no corresponde con el autoseleccionado
+                </div>
+                <div class="step">
+                    <strong>Paso 3:</strong> Cargar el depósito en caso de que corresponda por la renta
+                </div>
+                <img src="images/finalizar.png" alt="No imagen" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: block; margin: 1rem auto;">
+                <div style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-left: 5px solid #42a5f5; padding: 1.5rem; margin: 1.5rem 0; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <div style="text-align: center; font-size: 2rem; margin-bottom: 1rem;">ℹ️</div>
+                <div style="margin: 0; padding-left: 1.5rem; color: #0d47a1; line-height: 1.8;">
+                Cualquier renta creada desde el dashboard tiene estado por defecto APROGADO, esto significa que ya se recibió el pago completo de la misma. En caso de que el pago sea parcial se debe activar el switch “Es una reserva” esto les habilitar un nuevo campo “Total Pagado” que por defecto calcula el 20% del total del carrito. Puedo editarse en caso de que sea necesario. En este caso la reserva quedará PENDIENTE.
+                </div>
+                </div>
+                <img src="images/finalizar2.png" alt="No imagen" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: block; margin: 1rem auto;">
                 <div class="note">
                     <strong>Switch "Enviar correo al cliente":</strong> Por defecto activo. Si se desactiva, no enviará el email al cliente con el detalle de la reserva. Útil cuando se está generando nuevamente una reserva antigua.
                 </div>
-
                 <div class="step">
                     <strong>Paso 4:</strong> Finalmente clic en "Crear contrato"
                 </div>
             </section>
 
             <section id="editar-reservas" class="section">
-                <h2>Editar Reservas</h2>
+                <h1>Editar Reservas</h1>
                 
-                <h3 id="seleccionar-reserva">Seleccionar la reserva a editar</h3>
-                <p>Se puede buscar por número de reserva, email o nombre del cliente.</p>
-
-                <h3>Datos del cliente y Reserva</h3>
-                <p>En esta sección se puede modificar cualquier campo en caso de error en la carga o si es necesario realizar cambios.</p>
-
-                <h3 id="editar-vehiculos">Editar Vehículos del Contrato</h3>
-                <p>Cada vehículo posee 4 iconos con diferentes funcionalidades:</p>
-
+                <h2 id="seleccionar-reserva">1. Seleccionar la reserva a editar</h2>
+                
+                <div class="step">
+                    <p>Se puede buscar por número de reserva, email o nombre del cliente.</p>
+                </div>
+                <img src="images/buscareserva.png" alt="No imagen" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: block; margin: 1rem auto;">
+                <h2 id="datos_cliente">2. Datos del cliente y Reserva</h2>
+                <div class="step">
+                    <p>En esta sección se puede modificar cualquier campo en caso de error en la carga o si es necesario realizar cambios.</p>
+                </div>
+                <img src="images/cliente_reserva.png" alt="No imagen" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: block; margin: 1rem auto;">
+                <h2 id="editar-vehiculos">3. Editar Vehículos del Contrato</h2>
+                
+                <img src="images/editar.png" alt="No imagen" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: block; margin: 1rem auto;">
+                <div class="step">
+                    <p>Cada vehículo posee 4 iconos con diferentes funcionalidades:</p>
+                </div>
+                
                 <div class="icon-list">
                     <div class="icon-item">
-                        <strong>🖊️ Editar Reserva</strong>
+                        <div style="text-align: center;">
+                            <img src="images/iconoeditar.png" alt="Editar" style="width: 48px; height: 48px; display: block; margin: 0 auto 8px;">
+                        </div>
+                        <strong>Editar Reserva</strong>
                         <p>Permite editar la reserva completa del vehículo: fechas, vehículos y cantidad de personas. No requiere cargo económico. Se usa para corregir errores en la carga inicial.</p>
                         <p><em>Acción: Modificar y clic en "Guardar Inmediato"</em></p>
                     </div>
 
                     <div class="icon-item">
-                        <strong>📅 Extensión de Renta</strong>
+                        <div style="text-align: center;">
+                            <img src="images/iconoexterder.png" alt="Editar" style="width: 48px; height: 48px; display: block; margin: 0 auto 8px;">
+                        </div>
+                        <strong>Extensión de Renta</strong>
                         <p>Se utiliza para extender el período de renta. Configurar nueva fecha de finalización y cantidad de personas.</p>
                         <p><em>Acción: Clic en "Preparar Extensión"</em></p>
-                        <div class="note">Requiere completar el paso 4 (Pago)</div>
+                        <div class="note">Requiere completar el <a href="#detalle-pago" style="color: #0b0d0e; text-decoration: none; font-weight: 600;">paso 4 (Pago) →</a></div>
                     </div>
 
                     <div class="icon-item">
-                        <strong>🔄 Cambio de Vehículo</strong>
+                        <div style="text-align: center;">
+                            <img src="images/iconocambiar.png" alt="Editar" style="width: 48px; height: 48px; display: block; margin: 0 auto 8px;">
+                        </div>
+                        <strong>Cambio de Vehículo</strong>
                         <p>Permite cambiar el vehículo asignado. Colocar la fecha de inicio del nuevo vehículo y seleccionar el vehículo a entregar.</p>
                         <p><em>Acción: Clic en "Preparar Cambio"</em></p>
-                        <div class="note">Requiere completar el paso 4 (Pago)</div>
+                        <div class="note">Requiere completar el <a href="#detalle-pago" style="color: #0b0d0e; text-decoration: none; font-weight: 600;">paso 4 (Pago) →</a></div>
                     </div>
 
                     <div class="icon-item">
-                        <strong>🚚 Agregar Delivery</strong>
-                        <p>Se usa para cargar delivery a una renta ya cargada. Seguir el proceso descrito en la sección "Crear contrato".</p>
-                        <div class="note">Requiere completar el paso 4 (Pago)</div>
+                        <div style="text-align: center;">
+                            <img src="images/iconodelivery.png" alt="Editar" style="width: 48px; height: 48px; display: block; margin: 0 auto 8px;">
+                        </div>
+                        <strong>Agregar Delivery</strong>
+                        <p>Se usa para cargar delivery a una renta ya cargada. Seguir el proceso descrito en la sección <a href="#configurar_delivery" style="color: #17a2b8; text-decoration: none; font-weight: 600;">Configuración de Delivery →</a></p>
+                        <div class="note">Requiere completar el <a href="#detalle-pago" style="color: #0b0d0e; text-decoration: none; font-weight: 600;">paso 4 (Pago) →</a></div>
                     </div>
                 </div>
+
+                <div style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-left: 5px solid #42a5f5; padding: 1.5rem; margin: 1.5rem 0; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <div style="text-align: center; font-size: 2rem; margin-bottom: 1rem;">ℹ️</div>
+                <div style="margin: 0; padding-left: 1.5rem; color: #0d47a1; line-height: 1.8;">
+                Para cambios de vehículos que no se cobren al cliente, se utiliza el boton "Cambio de Vehículo" pero el monto a pagar en el paso 4 se coloca $0.
+                </div>
+                </div>
+                <div style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-left: 5px solid #42a5f5; padding: 1.5rem; margin: 1.5rem 0; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <div style="text-align: center; font-size: 2rem; margin-bottom: 1rem;">ℹ️</div>
+                <div style="margin: 0; padding-left: 1.5rem; color: #0d47a1; line-height: 1.8;">
+                Los demás servicios contratados Trensfer, Tours y Tickets se puede visualizar, pero no es posible realizar ninguna modificación sobre ellos.
+                <img src="images/serviciosextras.png" alt="No imagen" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: block; margin: 1rem auto;">
+                </div>
+                </div>
+                
             </section>
 
             <section id="detalle-pago" class="section">
-                <h2>Detalle del pago y Movimientos</h2>
+                <h2>4. Detalle del pago y Movimientos</h2>
                 
                 <h3>Caso 1: Movimientos del sistema</h3>
-                <p>Esta sección se utiliza para cargar el pago de los movimientos de extensión, cambio de vehículo y delivery.</p>
+                <div class="step">
+                    <p>Esta sección se utiliza para cargar el pago de los movimientos de extensión, cambio de vehículo y delivery.</p>
                 <ul>
                     <li>El campo "Movimiento referido" se completa automáticamente</li>
                     <li>Para extensión y delivery el monto pagado es automático, pero puede editarse si no corresponde</li>
                     <li>En la parte final se puede observar el cambio que está a punto de guardarse</li>
                 </ul>
+                </div>
+                <img src="images/movimiento.png" alt="No imagen" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: block; margin: 1rem auto;">
+                <div class="step">
+                    <p>En la parte final se puede observa el cambio que estamos a punto de guardar, en este caso estamos haciendo un cambio de vehículo y una extensión.</p>
+                </div>
+                <img src="images/detalles.png" alt="No imagen" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: block; margin: 1rem auto;">
+                
                 <div class="step">
                     <strong>Finalizar:</strong> Clic en "Guardar Cambios"
                 </div>
+                <div style="background: linear-gradient(135deg, #fff3cd 0%, #fff8e1 100%); border-left: 5px solid #b8956a; padding: 1.5rem; margin: 1.5rem 0; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <div style="text-align: center; font-size: 2rem; margin-bottom: 1rem;">⚠️</div>
+                <p>Se recomienda hacer un cambio por edición. Ej: primero extender la renta, guardar el cambio y luego cambiar el vehículo, para una visualización correcta en el historial.</p>
+                <p>En caso de que la renta tenga comisión, es decir un vendedor distinto a WEB/LOCAL, se debe realizar <strong>obligatoriamente</strong> las extensiones en un cambio aparte. Para un cobro correcto de la comisión.</p> 
+                
+                </div>
 
                 <h3>Caso 2: Otros movimientos</h3>
-                <p>Esta sección también se utiliza para cargar cualquier tipo de movimiento que implique un ingreso de dinero a la tienda:</p>
+                <div class="step">
+                    <p>Esta sección también se utiliza para cargar cualquier tipo de movimiento que implique un ingreso de dinero a la tienda:</p>
                 <ul>
                     <li>ROBO</li>
                     <li>COMBUSTIBLE</li>
                     <li>Entre otros</li>
                 </ul>
                 <p>Estos movimientos se seleccionan del desplegable "Movimiento referido", se cargan los campos restantes y se guardan haciendo clic en "Guardar Cambios".</p>
+                </div>
+                
+                <img src="images/otroscasos.png" alt="No imagen" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: block; margin: 1rem auto;">
+                
             </section>
 
             <section id="anexo" class="section">
-                <h2>Anexo</h2>
+                <h1>Anexo</h1>
                 
-                <h3 id="estados-reserva">Estados de Reserva</h3>
+                <h2 id="estados-reserva">Estados de Reserva</h2>
                 
                 <div class="step">
                     <span class="status-badge status-cancelado">CANCELADO</span>
@@ -454,7 +655,7 @@
                     <span class="status-badge status-confirmado">CONFIRMADO</span>
                     <ul>
                         <li>Desde la web pagada completamente (crédito/débito)</li>
-                        <li>Desde la web pago en efectivo. Al costado del estado aparece cartel "PAGO PENDIENTE". Pago 20% crédito/débito</li>
+                        <li>Desde la web pago en efectivo. Al costado del estado aparece cartel <span class="status-badge status-pagopendiente">PAGO PENDIENTE</span>. Pago 20% crédito/débito</li>
                         <li>Cualquier medio de pago utilizado desde el dashboard, que no esté activo el switch de "Reserva"</li>
                     </ul>
                 </div>
@@ -462,8 +663,8 @@
                 <div class="step">
                     <span class="status-badge status-pendiente">PENDIENTE</span>
                     <ul>
-                        <li>Desde la web pago en transferencia. Aparece cartel "PAGO PENDIENTE"</li>
-                        <li>Desde el dashboard cuando se activa el switch "Reserva". Aparece cartel "PAGO PENDIENTE"</li>
+                        <li>Desde la web pago en transferencia. Aparece cartel <span class="status-badge status-pagopendiente">PAGO PENDIENTE</span></li>
+                        <li>Desde el dashboard cuando se activa el switch "Reserva". Aparece cartel <span class="status-badge status-pagopendiente">PAGO PENDIENTE</span></li>
                     </ul>
                 </div>
 
@@ -471,14 +672,14 @@
                     <span class="status-badge status-rechazado">RECHAZADO</span>
                     <ul>
                         <li>Reservas que falló el pago del crédito/débito (tanto la reserva del 20% como el pago completo)</li>
-                        <li>Aparece cartel "PAGO ERRONEO"</li>
+                        <li>Aparece cartel <span class="status-badge status-pagorechazado">PAGO ERRÓNEO</span></li>
                     </ul>
                 </div>
             </section>
 
             <div style="margin-top: 4rem; padding: 2rem; background: #f7fafc; border-radius: 8px; text-align: center;">
                 <p style="color: #718096;">
-                    📝 Manual en desarrollo • Última actualización: Noviembre 2024
+                    📝 Manual en desarrollo • Última actualización: Noviembre 2025
                 </p>
             </div>
         </main>
