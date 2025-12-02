@@ -648,37 +648,57 @@
                 <div class="step">
                     <span class="status-badge status-cancelado">CANCELADO</span>
                     <ul>
-                        <li>Reservas canceladas no suman para reportes</li>
+                        <li>Contratos canceladas no suman para reportes</li>
                         <li>No ocupan las fechas de los vehículos</li>
                     </ul>
-                    <div class="step">
-                    <p>Cuando la reserva pasa a este estado, desencadena mail de RESERVA CANCELADA a cliente y tienda.</p>
+                    <div class="note">
+                    Cuando el contrato pasa a este estado, desencadena mail de RESERVA CANCELADA a cliente y tienda.
                     </div>
+                    
                 </div>
 
                 <div class="step">
                     <span class="status-badge status-confirmado">CONFIRMADO</span>
                     <ul>
-                        <li>Desde la web pagada completamente (crédito/débito)</li>
-                        <li>Desde la web pago en efectivo. Al costado del estado aparece cartel <span class="status-badge status-pagopendiente">PAGO PENDIENTE</span>. Pago 20% crédito/débito</li>
-                        <li>Cualquier medio de pago utilizado desde el dashboard, que no esté activo el switch de "Reserva"</li>
-                    </ul>
+                        <li>Desde la WEB pagada completamente (crédito/débito)</li>
+                        <li>Desde la WEB pago en efectivo. Al costado del estado aparece cartel <span class="status-badge status-pagopendiente">RESERVA 20%</span>. Pago 20% crédito/débito</li>
+                        <li>Cualquier medio de pago utilizado desde el dashboard</li>
+                        </ul>
+                    <div class="note">Desde el dashboard si se activa el switch de "Reserva",acá aparece un cartel <span class="status-badge status-pagopendiente">PAGO PENDIENTE</span></div>
+                    
+                    <div class="note">
+                           En todos los casos desencadena el mail de RESERVA CONFIRMADA a cliente y tienda, en el ultimo caso con switch "Reserva" aparece en el campo "Saldo pendiente" del mail 
+                           el saldo restante a pagar, pero cuando se valida el pago total de la reserva, desencadena nuevamente mail de ESERVA CONFIRMADA en este caso el "Saldo pendiente" es $0.
+                    </div>
                 </div>
 
                 <div class="step">
                     <span class="status-badge status-pendiente">PENDIENTE</span>
                     <ul>
-                        <li>Desde la web pago en transferencia. Aparece cartel <span class="status-badge status-pagopendiente">PAGO PENDIENTE</span></li>
-                        <li>Desde el dashboard cuando se activa el switch "Reserva". Aparece cartel <span class="status-badge status-pagopendiente">PAGO PENDIENTE</span></li>
+                        <li>Desde la WEB pago en transferencia. Aparece cartel <span class="status-badge status-pagopendiente">PAGO PENDIENTE</span></li>
+                        <li>Desde la WEB pago crédito/debito o efectivo(cuando intentan pagar el 20% por stripe) cuando <strong>NO</strong> se valida el pago. Aparece cartel <span class="status-badge status-pagorechazado">NO VALIDADO</span></li>
                     </ul>
+
+                    <div class="note">
+                           En todos los casos desencadena el mail de RESERVA PENDIENTE a cliente y tienda, con el total de la reserva como saldo pendiente, cuando se valida desencadena mail
+                           de reserva confirmada con "Saldo pendiente" en $0.
+                    </div>
                 </div>
 
                 <div class="step">
                     <span class="status-badge status-rechazado">RECHAZADO</span>
                     <ul>
-                        <li>Reservas que falló el pago del crédito/débito (tanto la reserva del 20% como el pago completo)</li>
-                        <li>Aparece cartel <span class="status-badge status-pagorechazado">PAGO ERRÓNEO</span></li>
+                        <li>Desde la WEB cuando hubo algun un error en la transacción pago crédito/debito o efectivo(cuando intentan pagar el 20% por stripe). Aparece cartel <span class="status-badge status-pagorechazado">PAGO ERRÓNEO</span></li>
                     </ul>
+                    <div class="note">
+                           En todos los casos desencadena el mail de RESERVA RECHAZADA. cuando se valida desencadena mail de reserva confirmada con "Saldo pendiente" en $0.
+                    </div>
+                </div>
+
+                <div style="background: linear-gradient(135deg, #fff3cd 0%, #fff8e1 100%); border-left: 5px solid #b8956a; padding: 1.5rem; margin: 1.5rem 0; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <div style="text-align: center; font-size: 2rem; margin-bottom: 1rem;">⚠️</div>
+                <p>Unicamente las reservas que no tienen efecto y no ocupan vehiculos son las CANCELADAS.</p>
+                <p>Si hay alguna reserva con estado RECHAZADO o PENDIENTE y que el cliente no va a completar el pago CANCELARLA para no tener problemas en reportes ni disponibilidad de vehículos.</p>
                 </div>
             </section>
 
